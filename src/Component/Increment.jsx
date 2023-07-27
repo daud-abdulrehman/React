@@ -1,5 +1,6 @@
 import React from 'react'
 import {useState} from "react"
+import { Button } from '@mui/material';
 
 function Increment() {
     const [number,setNumber]=useState(0)
@@ -7,8 +8,11 @@ function Increment() {
       <div className="App">
         {number}
         <br/>
-        <button onClick={() => setNumber(number + 1)}>Incerment</button>
-        <button onClick={() => setNumber(number - 1)}>Decrement</button>
+        <Button onClick={() => setNumber(number + 1)} variant="contained">Increment</Button>
+        <Button onClick={() => setNumber(number - 1)} variant="contained">Decrement</Button>
+
+
+
       </div>
     );
   }
