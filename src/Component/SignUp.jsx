@@ -1,47 +1,79 @@
-import React from 'react';
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
+import React from "react";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import { TextField,Button } from "@mui/material";
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
   lastName: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  email: Yup.string().email("Invalid email").required("Required"),
 });
 
 export const ValidationSchemaExample = () => (
-  <div>
+  <div style={{ padding: "50px" }}>
     <h1>Signup</h1>
     <Formik
       initialValues={{
-        firstName: '',
-        lastName: '',
-        email: '',
+        firstName: "",
+        lastName: "",
+        email: "",
       }}
       validationSchema={SignupSchema}
-      onSubmit={values => {
-        // same shape as initial values
+      onSubmit={(values) => {
         console.log(values);
       }}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, setFieldValue }) => (
         <Form>
-          <Field name="firstName" />
-          {errors.firstName && touched.firstName ? (
-            <div>{errors.firstName}</div>
-          ) : null}
-          <Field name="lastName" />
-          {errors.lastName && touched.lastName ? (
-            <div>{errors.lastName}</div>
-          ) : null}
-          <Field name="email" type="email" />
-          {errors.email && touched.email ? <div>{errors.email}</div> : null}
-          <button type="submit">Submit</button>
+          <TextField
+            name="firstName"
+            label="First Name"
+            variant="outlined"
+            error={Boolean(errors.firstName && touched.firstName)}
+            helperText={
+              errors.firstName && touched.firstName && String(errors.firstName)
+            }
+            onChange={(event) => {
+              setFieldValue("firstName", event.target.value);
+            }}
+          />
+          <br /><br />
+
+          <TextField
+            name="lastName"
+            label="Last Name"
+            variant="outlined"
+            error={Boolean(errors.lastName && touched.lastName)}
+            helperText={
+              errors.lastName && touched.lastName && String(errors.lastName)
+            }
+            onChange={(event) => {
+              setFieldValue("lastName", event.target.value);
+            }}
+          />
+
+          <br /><br />
+
+          <TextField
+            id="email"
+            name="email"
+            label="Email"
+            variant="outlined"
+            error={Boolean(errors.email && touched.email)}
+            helperText={errors.email && touched.email && String(errors.email)}
+            onChange={(event) => {
+              setFieldValue("email", event.target.value);
+            }}
+          />
+          <br />
+          <br />
+          <Button variant="contained" color = "success" type = "submit">Submit</Button>
         </Form>
       )}
     </Formik>
