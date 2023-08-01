@@ -13,9 +13,12 @@ const SignupSchema = Yup.object().shape({
     .max(50, "Too Long!")
     .required("Required"),
   email: Yup.string().email("Invalid email").required("Required"),
+  password: Yup.string()
+    .min(8, "Too Short!")
+    .required("Required"),
 });
 
-export const ValidationSchemaExample = () => (
+export const SignUp = () => (
   <div style={{ padding: "50px" }}>
     <h1>Signup</h1>
     <Formik
@@ -23,6 +26,7 @@ export const ValidationSchemaExample = () => (
         firstName: "",
         lastName: "",
         email: "",
+        password: ""
       }}
       validationSchema={SignupSchema}
       onSubmit={(values) => {
@@ -73,6 +77,19 @@ export const ValidationSchemaExample = () => (
           />
           <br />
           <br />
+          <TextField
+            name="password"
+            label="Password"
+            variant="outlined"
+            error={Boolean(errors.password && touched.password)}
+            helperText={
+              errors.password && touched.password && String(errors.password)
+            }
+            onChange={(event) => {
+              setFieldValue("password", event.target.value);
+            }}
+          />
+          <br /><br />
           <Button variant="contained" color = "success" type = "submit">Submit</Button>
         </Form>
       )}

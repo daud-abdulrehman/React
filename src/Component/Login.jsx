@@ -20,7 +20,8 @@ export const Login = () => (
       }}
       validationSchema={LoginSchema}
       onSubmit={(values) => {
-        console.log(values);
+        console.log(values)
+        localStorage.setItem('myData', JSON.stringify(values));
       }}
     >
       {({ errors, touched, setFieldValue }) => (
