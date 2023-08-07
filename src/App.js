@@ -1,25 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
-import Increment from './Component/Increment';
-import ToDoList from './Component/ToDoList'
-import { Button } from '@mui/material';
-import {SignUp} from './Component/SignUp'
-import { Login } from './Component/Login';
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 import AuthRoutes from './routes/Auth';
 import ProtectedRoutes from './routes/ProtectedRoutes';
+import Seller from './Component/Seller';
 
  
 
 function App() {
-  const user = localStorage.getItem('myData');
+  const user = null
   //debugger
 
   return (
    <div className="App">
-     <Router>{user ? <ProtectedRoutes /> : <AuthRoutes />}</Router>
+     { <Router>{user ? <ProtectedRoutes /> : <AuthRoutes />}</Router> }
+     {/* <Seller/> */}
    </div>
   );
 }
 
 export default App;
+
+// import React from "react";
+// import Seller from "./Component/Seller";
+// function App() {
+//   // Your Seller component logic here
+  
+//   return (
+//     <div>
+//       {/* Your Seller component UI */}
+//       {/* Use the GetOrders component here */}
+//       <Seller/>
+//       {/* Add other components or content as needed */}
+//     </div>
+//   );
+// }
+
+// export default App;

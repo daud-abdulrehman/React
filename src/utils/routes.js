@@ -7,6 +7,8 @@ const AUTH_ROUTES = {
     root: '/',
     increment: '/increment',
     todolist: '/todolist',
+    purchaser: '/purchaser',
+    seller:'/seller'
   };
   
   export const ROUTES = { AUTH_ROUTES, PROTECTED_ROUTES_NAMES };
